@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Team 4516 Scouting</title>
+    <meta name="description" content="Scouting frontend for Team 4516">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper green lighten-1">
+        <a href="/internal/index.html" class="brand-logo">&nbsp;Team 4516</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/internal/programming.html">Programming</a></li>
+          <li><a href="/internal/build.html">Build</a></li>
+          <li><a href="/internal/design.html">Design</a></li>
+          <li><a href="/internal/scouting.html">Scouting</a></li>
+          <li><a href="/internal/outreach.html">Outreach</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="/internal/programming.html">Programming</a></li>
+          <li><a href="/internal/build.html">Build</a></li>
+          <li><a href="/internal/design.html">Design</a></li>
+          <li><a href="/internal/scouting.html">Scouting</a></li>
+          <li><a href="/internal/outreach.html">Outreach</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h1 class="center-align">Scouting</h1>
+          <h4 class="center-align">New team entry</h4>
+        </div>
+      </div>
+      <form action="/internal/store_team.php" method="post" class="col s12">
+        <div class="row">
+          <div class="input-field col s3">
+            <input placeholder="1234" name="tnumber" type="text" class="validate" length="5">
+            <label for="tnumber">Team Number</label>
+          </div>
+          <div class="input-field col s9">
+            <input placeholder="Name" name="tname" type="text" class="validate" length="50">
+            <label for="tname">Team Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea placeholder="Description" name="tnotes" class="materialize-textarea" length="2000"></textarea>
+            <label for="tnotes">Team Notes</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <p class="center-align">
+              <button class="btn waves-effect waves-light green lighten-1" type="submit" name="action">Submit</button>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function(){
+          $(".button-collapse").sideNav();
+      });
+    </script>
+  </body>
+</html>

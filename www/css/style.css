@@ -1,0 +1,43 @@
+html {
+  background-color: #EEEEEE;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-weight: lighter;
+  font-size: 5.5em;
+}
+
+h2 {
+  font-weight: lighter;
+  font-size: 3em;
+}
+
+p#team {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+}
+
+p#body {
+  text-indent: 3em;
+}
+
+.parallax-container {
+  height: 30em;
+}
+
+.container {
+  width: 85%;
+}
+
+.flow-text {
+  font-weight: lighter;
+}
+
+#ind {
+  text-indent: 2em;
+}
+
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
