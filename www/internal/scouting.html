@@ -12,9 +12,9 @@
   </head>
   <body>
     <nav>
-      <div class="nav-wrapper green lighten-1">
-        <a href="/internal/index.html" class="brand-logo">&nbsp;Team 4516</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <div class="nav-wrapper grey lighten-4">
+        <a href="/internal/index.html" class="brand-logo"><img width="110" src="/images/logo1.png"></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons md-dark">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <li><a href="/internal/programming.html">Programming</a></li>
           <li><a href="/internal/build.html">Build</a></li>
