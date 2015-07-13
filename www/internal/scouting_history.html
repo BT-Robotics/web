@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Team 4516 Scouting History</title>
+    <meta name="description" content="Scouting frontend for Team 4516">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper grey lighten-4">
+        <a href="/internal/index.html" class="brand-logo"><img width="110" src="/images/logo1.png"></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons md-dark">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/internal/programming.html">Programming</a></li>
+          <li><a href="/internal/build.html">Build</a></li>
+          <li><a href="/internal/design.html">Design</a></li>
+          <li><a href="/internal/scouting.html">Scouting</a></li>
+          <li><a href="/internal/outreach.html">Outreach</a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="/internal/programming.html">Programming</a></li>
+          <li><a href="/internal/build.html">Build</a></li>
+          <li><a href="/internal/design.html">Design</a></li>
+          <li><a href="/internal/scouting.html">Scouting</a></li>
+          <li><a href="/internal/outreach.html">Outreach</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <h1 class="center-align">Scouting</h1>
+          <h4 class="center-align">Request old team entries</h4>
+        </div>
+      </div>
+      <form action="/internal/team_records.php" method="post" class="col s12">
+        <div class="row">
+          <div class="input-field col s4">
+            <span class="prefix">
+              <input type="checkbox" id="useTeamNumber" name="useTeamNumber" onclick="toggleButton('teamNumber')">
+              <label for="useTeamNumber"></label>
+            </span>
+            <input disabled name="teamNumber" type="text" class="validate" length="5">
+            <label for="teamNumber">Team Number</label>
+          </div>
+          <div class="input-field col s8">
+            <span class="prefix">
+              <input type="checkbox" id="useTeamName" name="useTeamName" onclick="toggleButton('teamName')">
+              <label for="useTeamName"></label>
+            </span>
+            <input disabled name="teamName" type="text" class="validate" length="50">
+            <label for="teamName">Team Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m6 l6">
+            <span class="prefix">
+              <input type="checkbox" id="useStartDate" name="useStartDate" onclick="toggleButton('startDate')">
+              <label for="useStartDate"></label>
+            </span>
+            <input disabled name="startDate" type="date" class="datepicker">
+            <label for="startDate">Start Date</label>
+          </div>
+          <div class="input-field col s12 m6 l6">
+            <span class="prefix">
+              <input type="checkbox" id="useEndDate" name="useEndDate" onclick="toggleButton('endDate')">
+              <label for="useEndDate"></label>
+            </span>
+            <input disabled name="endDate" type="date" class="datepicker">
+            <label for="endDate">End Date</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <span class="prefix">
+              <input type="checkbox" id="useMaxEntries" name="useMaxEntries" onclick="toggleButton('maxEntries')">
+              <label for="useMaxEntries"></label>
+            </span>
+            <input disabled name="maxEntries" type="text" class="validate">
+            <label for="maxEntries">Maximum Entries</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <p class="center-align">
+              <button disabled name="action" type="submit" class="btn waves-effect waves-light green lighten-1">Submit</button>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script>
+      var selectedButtons = 0;
+      function toggleButton(elementName) {
+        var button = document.getElementsByName(elementName)[0];
+        var submitButton = document.getElementsByName("action")[0];
+        if (button.hasAttribute("disabled")) {
+          button.removeAttribute("disabled");
+          selectedButtons += 1;
+        } else {
+          button.setAttribute("disabled", "disabled");
+          selectedButtons -= 1;
+        }
+        if (selectedButtons <= 0) submitButton.setAttribute("disabled", "disabled");
+        else submitButton.removeAttribute("disabled");
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $(".button-collapse").sideNav();
+        $('.datepicker').pickadate({
+          selectMonths: true,
+          selectYears: 15
+        });
+      });
+    </script>
+  </body>
+</html>

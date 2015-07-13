@@ -33,37 +33,36 @@
     </nav>
     <div class="container">
       <div class="row">
-        <div class="col s12 m6 l4">
-          <p class="z-depth-1 blue-grey lighten-4" id="team">
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_new.html">
-              <i class="medium material-icons">note_add</i>
-            </a><br>
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_new.html">
-              <span class="flow-text">New Entry</span>
-            </a>
-          </p>
-        </div>
-        <div class="col s12 m6 l4">
-          <p class="z-depth-1 blue-grey lighten-4" id="team">
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_edit.html">
-              <i class="medium material-icons">comment</i>
-            </a><br>
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_edit.html">
-              <span class="flow-text">Edit Entry</span>
-            </a>
-          </p>
-        </div>
-        <div class="col s12 m6 l4">
-          <p class="z-depth-1 blue-grey lighten-4" id="team">
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_history.html">
-              <i class="medium material-icons">list</i>
-            </a><br>
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_history.html">
-              <span class="flow-text">Previous Entries</span>
-            </a>
-          </p>
+        <div class="col s12">
+          <h1 class="center-align">Scouting</h1>
+          <h4 class="center-align">New team entry</h4>
         </div>
       </div>
+      <form action="/internal/store_team.php" method="post" class="col s12">
+        <div class="row">
+          <div class="input-field col s3">
+            <input name="tnumber" type="text" class="validate" length="5">
+            <label for="tnumber">Team Number</label>
+          </div>
+          <div class="input-field col s9">
+            <input name="tname" type="text" class="validate" length="50">
+            <label for="tname">Team Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <textarea name="tnotes" class="materialize-textarea" length="2000"></textarea>
+            <label for="tnotes">Team Notes</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <p class="center-align">
+              <button class="btn waves-effect waves-light green lighten-1" type="submit" name="action">Submit</button>
+            </p>
+          </div>
+        </div>
+      </form>
     </div>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Team 4516 Scouting</title>
-    <meta name="description" content="Scouting frontend for Team 4516">
+    <meta name="description" content="Team 4516 Scouting">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -33,34 +33,40 @@
     </nav>
     <div class="container">
       <div class="row">
-        <div class="col s12 m6 l4">
-          <p class="z-depth-1 blue-grey lighten-4" id="team">
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_new.html">
-              <i class="medium material-icons">note_add</i>
-            </a><br>
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_new.html">
-              <span class="flow-text">New Entry</span>
-            </a>
-          </p>
+        <div class="col s12">
+          <?php
+            $username = '~~USERNAME~~';
+            $password = '~~PASSWORD~~';
+            $dbname = 'scouting';
+            $servername = 'localhost';
+
+            # Testing stuff
+            echo "<p>Using team number: ";
+            if ($_POST['useTeamNumber'] == "on") echo "TRUE</p>";
+            else echo "FALSE</p>";
+
+            echo "<p>Using team name: ";
+            if ($_POST['useTeamName'] == "on") echo "TRUE</p>";
+            else echo "FALSE</p>";
+
+            echo "<p>Using start date: ";
+            if ($_POST['useStartDate'] == "on") echo "TRUE</p>";
+            else echo "FALSE</p>";
+
+            echo "<p>Using end date: ";
+            if ($_POST['useEndDate'] == "on") echo "TRUE</p>";
+            else echo "FALSE</p>";
+
+            echo "<p>Using max entries: ";
+            if ($_POST['useMaxEntries'] == "on") echo "TRUE</p>";
+            else echo "FALSE</p>";
+          ?>
         </div>
-        <div class="col s12 m6 l4">
-          <p class="z-depth-1 blue-grey lighten-4" id="team">
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_edit.html">
-              <i class="medium material-icons">comment</i>
-            </a><br>
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_edit.html">
-              <span class="flow-text">Edit Entry</span>
-            </a>
-          </p>
-        </div>
-        <div class="col s12 m6 l4">
-          <p class="z-depth-1 blue-grey lighten-4" id="team">
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_history.html">
-              <i class="medium material-icons">list</i>
-            </a><br>
-            <a class="waves-effect" style="color: inherit; text-decoration: none;" href="/internal/scouting_history.html">
-              <span class="flow-text">Previous Entries</span>
-            </a>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <p class="center-align">
+            <a class="waves-effect waves-light green lighten-1 btn" href="/internal/scouting_history.html">Search again</a>
           </p>
         </div>
       </div>
