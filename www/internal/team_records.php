@@ -1,8 +1,8 @@
 <?php
-  $username = 'root';
-  $password = 'root';
+  $username = '~~USERNAME~~';
+  $password = '~~PASSWORD~~';
   $database = 'scouting';
-  $servername = 'localhost:8889';
+  $servername = 'localhost';
   $conn = new mysqli($servername, $username, $password, $database);
   if ($conn) {
     $sql = $_POST['sql'];
