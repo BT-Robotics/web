@@ -36,8 +36,14 @@ p#body {
   height: 30em;
 }
 
-.container {
+div.container {
   width: 85%;
+}
+
+div.content {
+  padding: .5em;
+  margin-bottom: .5em;
+  visibility: hidden;
 }
 
 .flow-text {

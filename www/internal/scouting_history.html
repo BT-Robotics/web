@@ -31,6 +31,7 @@
         </ul>
       </div>
     </nav>
+    <div class="container content"></div>
     <div class="container">
       <div class="row">
         <div class="col s12">
@@ -38,67 +39,66 @@
           <h4 class="center-align">Request old team entries</h4>
         </div>
       </div>
-      <form action="/internal/team_records.php" method="post" class="col s12">
-        <div class="row">
-          <div class="input-field col s4">
-            <span class="prefix">
-              <input type="checkbox" id="useTeamNumber" name="useTeamNumber" onclick="toggleButton('teamNumber')">
-              <label for="useTeamNumber"></label>
-            </span>
-            <input disabled name="teamNumber" type="text" class="validate" length="5">
-            <label for="teamNumber">Team Number</label>
-          </div>
-          <div class="input-field col s8">
-            <span class="prefix">
-              <input type="checkbox" id="useTeamName" name="useTeamName" onclick="toggleButton('teamName')">
-              <label for="useTeamName"></label>
-            </span>
-            <input disabled name="teamName" type="text" class="validate" length="50">
-            <label for="teamName">Team Name</label>
-          </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <span class="prefix">
+            <input type="checkbox" id="useTeamNumber" name="useTeamNumber" onclick="toggleButton('teamNumber')">
+            <label for="useTeamNumber"></label>
+          </span>
+          <input disabled id="teamNumber" type="text" class="validate" length="5">
+          <label for="teamNumber">Team Number</label>
         </div>
-        <div class="row">
-          <div class="input-field col s12 m6 l6">
-            <span class="prefix">
-              <input type="checkbox" id="useStartDate" name="useStartDate" onclick="toggleButton('startDate')">
-              <label for="useStartDate"></label>
-            </span>
-            <input disabled name="startDate" type="date" class="datepicker">
-            <label for="startDate">Start Date</label>
-          </div>
-          <div class="input-field col s12 m6 l6">
-            <span class="prefix">
-              <input type="checkbox" id="useEndDate" name="useEndDate" onclick="toggleButton('endDate')">
-              <label for="useEndDate"></label>
-            </span>
-            <input disabled name="endDate" type="date" class="datepicker">
-            <label for="endDate">End Date</label>
-          </div>
+        <div class="input-field col s8">
+          <span class="prefix">
+            <input type="checkbox" id="useTeamName" name="useTeamName" onclick="toggleButton('teamName')">
+            <label for="useTeamName"></label>
+          </span>
+          <input disabled id="teamName" type="text" class="validate" length="50">
+          <label for="teamName">Team Name</label>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <span class="prefix">
-              <input type="checkbox" id="useMaxEntries" name="useMaxEntries" onclick="toggleButton('maxEntries')">
-              <label for="useMaxEntries"></label>
-            </span>
-            <input disabled name="maxEntries" type="text" class="validate">
-            <label for="maxEntries">Maximum Entries</label>
-          </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12 m6 l6">
+          <span class="prefix">
+            <input type="checkbox" id="useStartDate" name="useStartDate" onclick="toggleButton('startDate')">
+            <label for="useStartDate"></label>
+          </span>
+          <input disabled id="startDate" type="date" class="datepicker">
+          <label for="startDate">Start Date</label>
         </div>
-        <div class="row">
-          <div class="col s12">
-            <p class="center-align">
-              <button disabled name="action" type="submit" class="btn waves-effect waves-light green lighten-1">Submit</button>
-            </p>
-          </div>
+        <div class="input-field col s12 m6 l6">
+          <span class="prefix">
+            <input type="checkbox" id="useEndDate" name="useEndDate" onclick="toggleButton('endDate')">
+            <label for="useEndDate"></label>
+          </span>
+          <input disabled id="endDate" type="date" class="datepicker">
+          <label for="endDate">End Date</label>
         </div>
-      </form>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <span class="prefix">
+            <input type="checkbox" id="useMaxEntries" name="useMaxEntries" onclick="toggleButton('maxEntries')">
+            <label for="useMaxEntries"></label>
+          </span>
+          <input disabled id="maxEntries" type="text" class="validate">
+          <label for="maxEntries">Maximum Entries</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <p class="center-align">
+            <button disabled id="submit" class="btn waves-effect waves-light green lighten-1" onclick="submit()">Submit</button>
+          </p>
+        </div>
+      </div>
     </div>
     <script>
       var selectedButtons = 0;
+
       function toggleButton(elementName) {
-        var button = document.getElementsByName(elementName)[0];
-        var submitButton = document.getElementsByName("action")[0];
+        var button = document.getElementById(elementName);
+        var submitButton = document.getElementById("submit");
         if (button.hasAttribute("disabled")) {
           button.removeAttribute("disabled");
           selectedButtons += 1;
@@ -109,6 +109,63 @@
         if (selectedButtons <= 0) submitButton.setAttribute("disabled", "disabled");
         else submitButton.removeAttribute("disabled");
       }
+
+      function generateSql() {
+        var valNum = document.getElementById('teamNumber').value;
+        var valName = document.getElementById('teamName').value;
+        var valStart = document.getElementById('startDate').value;
+        var valEnd = document.getElementById('endDate').value;
+        var sql = "SELECT * FROM Teams WHERE";
+        var requiresAND = false;
+        if (document.getElementById('useTeamNumber').checked) {
+          if (requiresAND) sql = sql.concat(" AND ")
+          else {sql = sql.concat(" "); requiresAND = true;}
+          sql = sql.concat("number LIKE '%" + valNum + "%'");
+        }
+        if (document.getElementById('useTeamName').checked) {
+          if (requiresAND) sql = sql.concat(" AND ")
+          else {sql = sql.concat(" "); requiresAND = true;}
+          sql = sql.concat("name LIKE '%" + valName + "%'");
+        }
+        if (document.getElementById('useStartDate').checked ||
+            document.getElementById('useEndDate').checked) {
+          if (requiresAND) sql = sql.concat(" AND ")
+          else {sql = sql.concat(" "); requiresAND = true;}
+          var start = (document.getElementById('useStartDate').checked ? valStart : "01/01/1970");
+          if (document.getElementById('useEndDate').checked) var end = valEnd;
+          else {
+            var today = new Date();
+            var mm = today.getMonth() + 1;
+            var dd = today.getDate();
+            var yyyy = today.getFullYear();
+            var end = mm + "/" + dd + "/" + yyyy;
+          }
+          sql = sql.concat("time BETWEEN #" + start + "# AND #" + end + "#");
+        }
+        return sql.concat(";");
+      }
+
+      function submit() {
+        var valMax = document.getElementById('maxEntries').value;
+        if (!valMax) valMax = 100;
+        var sql = generateSql();
+        $("div.content").children("div").remove();
+        for (i = 0; i < valMax; i++) {
+          $.post("team_records.php", {num: i, sql: sql}, function(data) {
+            if (data.teamName != null) {
+              $("div.content").css("visibility", "visible");
+              $("div.content").append('\
+                <div class="row">\
+                  <div class="col s12">\
+                    <p>Team "' + data.teamName + '" (Team #' + data.teamNumber + '): "' + data.teamNotes + '"</p>\
+                  </div>\
+                </div>\
+                <div class="divider"></div>\
+              ');
+            }
+          }, "json");
+        }
+      }
     </script>
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
@@ -116,8 +173,9 @@
       $(document).ready(function(){
         $(".button-collapse").sideNav();
         $('.datepicker').pickadate({
-          selectMonths: true,
-          selectYears: 15
+          selectMonths: false,
+          selectYears: false,
+          format: 'mm/dd/yyyy'
         });
       });
     </script>
